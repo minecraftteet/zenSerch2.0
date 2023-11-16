@@ -1,35 +1,62 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import Icon from './assets/Icon.png'
 function App() {
-  const [count, setCount] = useState(0)
+ const [isOpened, setIsOpened] = useState(false);
+const[value, setValue] = useState(""); 
+    function handlegoogle() {
+        window.open('https://google.com/search?q='+value,"_self")
+    }
+    function handleyoutub(params:type) {
+      window.open('https://www.youtube.com/results?search_query='+value,"_self")
+    }
+    function handleSOF() {
+    if (value == "stream" ){
+      window.open('https://twitch.tv/codespace25')
+    } else { 
+      window.open('https://stackoverflow.com/search?q='+value,"_self")
+    }
+    }
+    function toggle() {
+    setIsOpened(wasOpened => !wasOpened);
+    }
+    
 
+
+    
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="box">
+      <button  onClick={toggle}>
+          🍔
+      </button>
+      {isOpened && (
+        <div className="willy">
+          <a onClick={handleyoutub}>youtube</a>
+          <dir></dir>
+          <a onClick={handleSOF}>stackoverflow</a>
+        </div>
+      )}
+    </div>
+    <div className="streamNave">
+    <h1>this is a place to see if im live
+    </h1>
+    </div>
+
+
+      
+    <div>
+    <img
+    className="Icon"
+    src={Icon}
+    />
+    </div>
+     <input value={value} onChange={(e) => {setValue(e.target.value)}} />
+     <button onClick={handlegoogle}>Button</button> 
+    </>)
 }
+
+
+
 
 export default App
